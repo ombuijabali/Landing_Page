@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Digireg Kenya</title>
+  <link rel="icon" href="assets1.png" type="image/png">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+    .landing-page {
+      position: relative;
+      background-color: #f5f5f5;
+      height: 85vh;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      padding-left: 20px;
+      border: 1px solid brown;
+      border-radius: 20px;
+    }
+    h1 {
+      font-size: 40px;
+      color: blue;
+      margin-bottom: 10px;
+    }
+    h3 {
+      font-size: 28px;
+      color: #333;
+      margin-bottom: 30px;
+      margin-left: 30px;
+    }
+    .cta-button {
+      display: inline-block;
+      width: 200px;
+      padding: 10px 20px;
+      text-align: center;
+      background-color: #ff7f00;
+      color: #fff;
+      text-decoration: none;
+      font-weight: bold;
+      border-radius: 5px;
+      font-size: 16px;
+      transition: background-color 0.3s ease;
+      margin-left: 150px;
+    }
+    .cta-button:hover {
+      background-color: #ff6f00;
+      
+    }
+    .image-placeholder {
+      flex: 1;
+      margin-left: 100px;
+    }
+    .image-placeholder img {
+      max-width: 85%;
+      height: 100%;
+    }
+    .navbar {
+      display: none;
+      background-color: white;
+      padding: 10px;
+      margin-top: 20px;
+      justify-content: flex-end;
+      margin-right: 0px;
+    }
+
+    .navbar a {
+      color: brown;
+      text-decoration: none;
+      padding: 10px;
+      margin-left: 10px; /* Add margin from the left */
+      font-weight: bold;
+      text-align: center;
+    }
+
+    .container {
+      display: none;
+      position: relative; /* Set the container position to relative */
+      background: url("plan2.jpg") center/cover no-repeat; /* Replace "plan2.jpg" with the actual image path */
+      border-radius: 10px;
+    }
+
+    .container.active {
+      display: block;
+    }
+
+    .logo {
+      text-align: center;
+      margin-bottom: 20px;
+    }
+
+    .logo img {
+      max-width: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+
+    .logo-img {
+      display: block;
+      margin-bottom: 10px;
+    }
+
+    .container .content {
+      display: flex;
+      align-items: center;
+      margin-bottom: 40px;
+      margin-left: 20px;
+      margin-right: 20px;
+
+      border-radius: 10px;
+      background: linear-gradient(to right, #0066CC, #964B00); /* Blue to Brown gradient */
+      color: white; /* Text color - white to contrast with the background gradient */
+      padding: 20px; /* Add some padding to the content */
+    }
+
+    .container .image {
+      flex: 1;
+      margin-right: 20px;
+    }
+
+    .container .image img {
+      max-width: 90%;
+      height: 400px;
+      object-fit: cover;
+    }
+
+    .container .text {
+      flex: 1;
+    }
+
+    .container .text h3 {
+      margin-bottom: 10px;
+    }
+
+    .container .text p,
+    .container .text ul {
+      margin-bottom: 20px;
+    }
+
+    /* Move the content on the right to the far right */
+    .container .content:nth-child(odd) .image {
+      margin-left: auto;
+      margin-right: 0;
+    }
+
+    .container .image img[src="plan3.jpg"],
+    .container .image img[src="plan6.png"] {
+      width: 100%; /* Adjust the width as needed */
+    }
+
+    .container .image img[src="plan6.png"] {
+      height: 600px;
+    }
+
+    .footer {
+      background-color: #f5f5f5;
+      height: 80px;
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .footer a {
+      color: #333;
+      text-decoration: none;
+      margin-right: 10px;
+    }
+
+    .footer img {
+      width: 20px;
+      height: 20px;
+      margin-right: 5px;
+    }
+    #community {
+      text-align: center;
+    }
+
+    .case-study-wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
+
+    .case-study {
+      flex: 1;
+      padding: 20px;
+      margin-bottom: 20px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      max-width: 650px;
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+
+    .case-study img {
+      width: 600px;
+      height: 300px;
+      margin-bottom: 10px;
+    }
+
+
+  </style>
+  <script>
+ function showContent(id) {
+      var landingPage = document.getElementById('landing-page');
+      landingPage.style.display = 'none';
+      
+      var navbar = document.getElementById('navbar');
+      navbar.style.display = 'flex';
+      
+      var contentSections = document.getElementsByClassName('container');
+      for (var i = 0; i < contentSections.length; i++) {
+        contentSections[i].classList.remove('active');
+      }
+      var section = document.getElementById(id);
+      section.classList.add('active');
+    }
+    function showMore(id, event) {
+    event.preventDefault();
+    var content = document.getElementById(id);
+    if (content.style.display === "none") {
+      content.style.display = "block";
+    } else {
+      content.style.display = "none";
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', () => {
+    const lamuImage = document.getElementById('lamu-image');
+    const kakamegaImage = document.getElementById('kakamega-image');
+
+    const imagesLamu = ['plan.jpg', 'plan8.jpeg', 'plan7.jpg'];
+    const imagesKakamega = ['plan8.jpeg', 'plan.jpg', 'plan2.jpg'];
+
+    let imageIndexLamu = 0;
+    let imageIndexKakamega = 0;
+
+    function changeImages() {
+      lamuImage.src = imagesLamu[imageIndexLamu];
+      kakamegaImage.src = imagesKakamega[imageIndexKakamega];
+      imageIndexLamu = (imageIndexLamu + 1) % imagesLamu.length;
+      imageIndexKakamega = (imageIndexKakamega + 1) % imagesKakamega.length;
+    }
+
+    // Call the changeImages function every 3 seconds to animate the image changes
+    setInterval(changeImages, 3000);
+  });
+</script>
+
+  </script>
+</head>
+<body>
+    <div class="landing-page" id="landing-page">
+        <div class="content">
+          <div class="logo">
+            <img src="assets1.png" alt="Logo">
+          </div>
+          <h1>
+           CREATING MEANINGFUL INSIGHTS
+          </h1>
+          <h3>Delivering the highest quality in data products,<br> data management and business analytics</h3>
+          <a href="#" onclick="showContent('why-digireg')" class="cta-button">Explore More</a>
+        </div>
+        <div class="image-placeholder">
+          <img src="plan2.jpg" alt="Image Placeholder" />
+        </div>
+      </div>
+             
+  
+  <div id="navbar" class="navbar">
+    <a href="#" onclick="showContent('why-digireg' )">Why-Digireg</a>
+    <a href="#" onclick="showContent('community')">Community</a>
+    <hr>
+  </div>
+  
+  <div id="why-digireg" class="container">
+    <div class="content">
+      <div class="text">            
+        <h3 style="color: #ff7f00;">DATA CONSULTANCY</h3>
+        <p>Data consultancy provides organizations with data analytics and management services to effectively leverage data and make informed decisions. The consultancy team's expertise in data analytics empowers organizations to extract valuable insights from their data, enabling them to enhance their operations and drive success.</p>
+        <a href="#" onclick="showMore('consultancy-more', event)" style="color: orangered;">Read More</a>
+        <div id="consultancy-more" style="display: none;">
+          <p>Additional information about Data Consultancy can be displayed here. The consultancy services encompass a wide range of offerings, including data analysis, data visualization, data-driven decision-making, and data management strategies. By partnering with data consultants, organizations gain access to specialized knowledge and tools to harness the full potential of their data assets.</p>
+          <p>The consultancy team collaborates closely with clients to understand their unique needs and challenges, tailoring data solutions that align with their objectives. They conduct in-depth data assessments, identify key performance indicators, and develop customized data strategies to drive organizational growth and efficiency.</p>
+          <p>Furthermore, data consultancy often involves conducting case studies of successful projects to showcase the transformative impact of data-driven approaches. These case studies demonstrate how data analytics and management have led to improved outcomes, cost savings, and enhanced decision-making processes across various industries.</p>
+          <p>The consultancy team's proficiency in data analytics tools and methodologies equips organizations with the capability to navigate complex data landscapes. They implement cutting-edge data analytics techniques, such as machine learning and predictive modeling, to uncover patterns, trends, and predictive insights that drive innovation and competitive advantage.</p>
+          <p>By leveraging data consultancy services, organizations can unlock the true potential of their data, driving continuous improvement and innovation. The consultancy team acts as strategic partners, guiding organizations on their data journey and empowering them to become data-driven enterprises.</p>
+        </div>                       
+      </div>          
+      <div class="image">
+        <img src="plan3.jpg" alt="Image 2">
+      </div>
+    </div>
+  
+    <div class="content">
+      <div class="image">
+        <img src="plan4.png" alt="Image 3">
+      </div>
+      <div class="text">
+        <h3 style="color: #ff7f00;">E-Governance</h3>
+        <p>Utilizing digital technologies to enhance the efficiency, transparency, accountability, and effectiveness of governance processes. E-governance represents a paradigm shift in the way local governments function, as it embraces the power of digital tools to transform traditional government operations, services, and interactions with citizens, businesses, and other stakeholders.</p>
+        <p>By adopting e-governance solutions, local governments can streamline bureaucratic processes and reduce administrative burdens. Digital platforms enable citizens to access government services online, making interactions more convenient, efficient, and accessible 24/7. From applying for permits and licenses to paying taxes, e-governance empowers citizens to engage with the government without the need for physical visits to government offices.</p>
+        <a href="#" onclick="showMore('egovernance-more', event)" style="color: orangered;">Read More</a>
+        <div id="egovernance-more" style="display: none;">
+          <p>One of the key benefits of e-governance is its ability to enhance transparency and accountability. Digital records and data management systems ensure that government actions are traceable, and information is readily available to the public. This fosters trust between the government and its citizens, as they can monitor the decision-making process and hold officials accountable for their actions.</p>
+          <p>Moreover, e-governance enables local governments to leverage big data and analytics to gain valuable insights into citizen preferences, needs, and behavior. By analyzing data from various sources, such as social media, online surveys, and service feedback, governments can make data-driven decisions that align with the aspirations of their constituents.</p>
+          <p>The implementation of e-governance solutions also contributes to cost savings and resource optimization. By reducing paperwork and manual processes, local governments can allocate resources more efficiently, directing them towards critical areas such as infrastructure development, healthcare, and education.</p>
+          <p>Additional information about e-governance can be displayed here. This could include specific examples, case studies, and benefits of implementing e-governance solutions. E-governance has demonstrated success in various local governments worldwide, improving service delivery, citizen engagement, and overall governance effectiveness. For instance, digital platforms for citizen feedback and participation have resulted in better decision-making processes that align with citizens' needs and preferences. Furthermore, e-governance has proven vital during times of crisis, enabling governments to disseminate information rapidly, coordinate responses, and engage citizens in emergency planning. The benefits of e-governance are extensive, and its continuous evolution promises to bring further advancements to local governments, fostering inclusive and sustainable development for their communities.</p>   
+        </div>             
+      </div>
+    </div>
+    
+    <div class="content">
+      <div class="text">
+        <h3 style="color: #ff7f00;">Data Science</h3>
+        <p>Data science plays a crucial role in empowering local governments with the ability to harness the potential of data for informed decision-making and effective governance. Through data analytics and management services, data science enables local authorities to extract valuable insights from vast amounts of data, transforming it into actionable information to drive positive outcomes for their communities.</p>
+        <p>With the help of data science, local governments can optimize various aspects of their operations and service delivery. By analyzing diverse datasets, ranging from citizen demographics to infrastructure utilization, they gain a comprehensive understanding of the community's needs and preferences. This knowledge empowers policymakers to craft targeted policies and initiatives that address specific challenges and foster sustainable development.</p>
+        <a href="#" onclick="showMore('data-more', event)" style="color: orangered;">Read More</a>
+        <div id="data-more" style="display: none;">
+          <p>Data science also aids local governments in improving the efficiency of public services. By employing sophisticated data analytics techniques, they can streamline processes, enhance resource allocation, and predict demand patterns. This results in better resource utilization, reduced costs, and more responsive services tailored to the citizens' requirements.</p>
+          <p>Furthermore, data science equips local governments with the capability to detect and address emerging issues proactively. By analyzing real-time data, they can identify trends and potential risks, enabling prompt interventions and crisis management. This proactive approach enhances resilience and ensures swift responses to changing circumstances, safeguarding the well-being of the community.</p>
+          <p>Moreover, data science empowers local governments to make data-driven decisions based on evidence and insights. By utilizing advanced data modeling and predictive analytics, they can forecast future scenarios and evaluate the potential impact of policy changes. This enables them to make informed choices that lead to positive outcomes and better serve their constituents.</p>
+          <p>The applications of data science in local governments are diverse and encompass various domains, such as urban planning, transportation management, healthcare, education, and public safety. By integrating data science into these areas, local authorities can optimize resource allocation, plan for future needs, and ensure the effective delivery of essential services to citizens.</p>
+          <p>In summary, data science is of paramount importance to local governments, offering them the tools and knowledge to thrive in an increasingly data-driven world. By leveraging data effectively, local authorities can enhance governance, foster innovation, and create vibrant, resilient communities that address the needs of their citizens comprehensively.</p>
+        </div>
+      </div>
+      <div class="image">
+        <img src="plan6.png" alt="Image 2">
+      </div>
+      </div>
+    
+      <div class="content">
+        <div class="image">
+          <img src="plan7.jpg" alt="Image 3">
+        </div>
+        <div class="text">
+          <h3 style="color: #ff7f00;">Spatial Planning</h3>
+          <p>Utilizing digital technologies, spatial planning aims to enhance the efficiency, transparency, accountability, and effectiveness of governance processes. It involves transforming traditional government operations, services, and interactions with citizens, businesses, and other stakeholders through the use of spatial data and analysis.</p>
+          <a href="#" onclick="showMore('spatialplanning-more', event)" style="color: orangered;">Read More</a>
+          <div id="spatialplanning-more" style="display: none;">
+            <p>Spatial planning solutions utilize geographic information systems (GIS) and geospatial analysis tools to address complex urban and regional challenges. These solutions enable local governments to make informed decisions related to land use, infrastructure development, transportation, and environmental conservation.</p>
+            <p>By implementing spatial planning solutions, local governments can optimize land utilization and urban development, leading to well-organized and sustainable cities. Spatial data analysis allows them to identify suitable locations for various purposes, such as residential areas, commercial zones, green spaces, and public facilities, ensuring a balanced and functional urban environment.</p>
+            <p>Furthermore, spatial planning plays a crucial role in disaster risk reduction and emergency management. By analyzing spatial data related to hazard exposure, vulnerability, and population distribution, local governments can develop effective disaster response plans and improve preparedness measures to protect their communities.</p>
+            <p>Additionally, spatial planning facilitates efficient transportation management by analyzing traffic patterns and planning transportation networks. This results in better traffic flow, reduced congestion, and improved connectivity, enhancing the overall mobility and accessibility of the city.</p>
+            <p>Moreover, spatial planning solutions aid local governments in environmental conservation and sustainable resource management. Through spatial data analysis, they can identify ecologically sensitive areas, plan for green spaces and protected areas, and implement measures to mitigate environmental impacts, fostering a healthier and greener environment for residents.</p>
+            <p>By embracing spatial planning, local governments can optimize urban development, enhance resilience to natural hazards, and promote sustainable growth. The insights gained from spatial data analysis empower decision-makers to create cities that are more livable, inclusive, and environmentally friendly, ensuring a high quality of life for their citizens.</p>
+          </div>
+        </div>
+      </div>      
+      <div class="content">
+        <div class="text">
+          <h3 style="color: #ff7f00;">Land Information Management System</h3>
+          <p>The Land Information Management System (LIMS) offers data analytics and management services to help organizations leverage data effectively and make informed decisions related to land and property management. By utilizing advanced data technologies and analysis techniques, LIMS facilitates efficient land administration and supports sustainable land use practices.</p>
+          <a href="#" onclick="showMore('land-more', event)" style="color: orangered;">Read More</a>
+          <div id="land-more" style="display: none;">
+            <p>LIMS provides organizations with data management tools and techniques to efficiently handle land records, land transactions, and property information. By centralizing and digitizing land-related data, local governments gain a comprehensive view of land assets, enabling them to optimize land utilization and planning.</p>
+            <p>LIMS plays a crucial role in land administration, ensuring accurate and transparent land records. By maintaining up-to-date and reliable land data, local governments can streamline land transactions, facilitate property registration, and minimize land disputes. This improves overall land governance and enhances the confidence of investors and property owners in the land registration process.</p>
+            <p>Furthermore, LIMS aids local governments in spatial planning and urban development. By analyzing land use patterns and zoning regulations, they can plan for sustainable growth, allocate land for residential, commercial, and recreational purposes, and design well-organized and functional urban areas.</p>
+            <p>The benefits of LIMS extend beyond land administration and planning. It also supports decision-making processes by providing data-driven insights. Through data analytics, local governments can assess the impact of land policies, evaluate land market trends, and identify opportunities for infrastructure development and public services.</p>
+            <p>LIMS is particularly valuable in supporting land management in rapidly growing urban areas, where efficient land use and planning are critical to address population growth and urbanization challenges. By utilizing data analytics and management services, local governments can proactively plan for future needs, allocate resources effectively, and ensure sustainable urban development.</p>
+            <p>In summary, the Land Information Management System is an essential tool for local governments to enhance land administration, support sustainable development, and make informed decisions related to land and property management. By leveraging data effectively, LIMS empowers local authorities to create well-planned and vibrant communities that meet the needs of their residents while ensuring efficient land use and governance. </p>
+          </div>
+        </div>
+        <div class="image">
+          <img src="plan8.jpeg" alt="Image 2">
+        </div>
+      </div>      
+      <div class="content">
+        <div class="image">
+          <img src="plan9.JPG" alt="Image 3">
+        </div>
+        <div class="text">
+          <h3 style="color: #ff7f00;">Agriculture Management System</h3>
+          <p>The Agriculture Management System leverages digital technologies to enhance the efficiency, transparency, accountability, and effectiveness of governance processes in the agricultural industry. By transforming traditional government operations and interactions with stakeholders, this system aims to optimize agricultural practices, promote sustainable farming, and support the growth of the agricultural sector.</p>
+          <a href="#" onclick="showMore('agriculture-more', event)" style="color: orangered;">Read More</a>
+          <div id="agriculture-more" style="display: none;">
+            <p>
+              The Agriculture Management System offers various features to support farmers and agricultural businesses. One of the key aspects is precision agriculture, which involves using data analytics and technology to optimize crop production. By analyzing factors such as soil conditions, weather patterns, and crop health, farmers can make data-driven decisions to improve yield and reduce resource waste.</p>
+            <p>Another essential component of the system is supply chain management. By digitizing and integrating the supply chain, from production to distribution, the Agriculture Management System enhances traceability and ensures the quality and safety of agricultural products. This level of transparency is beneficial for both consumers and producers.</p>
+            <p>The system also promotes sustainable farming practices. It encourages the adoption of eco-friendly approaches, such as organic farming and integrated pest management, to minimize environmental impacts and protect natural resources. By supporting sustainable practices, the Agriculture Management System contributes to long-term agricultural productivity and resilience.</p>
+            <p>Moreover, the Agriculture Management System facilitates access to market information and financial services for farmers. By providing real-time market data and connecting farmers with potential buyers, the system empowers farmers to make informed decisions about pricing and selling their products. Additionally, access to financial services helps farmers secure funding for investments and operational needs.</p>
+            <p>The system's data analytics capabilities also assist policymakers in developing agricultural policies and programs. By analyzing agricultural data, such as production trends and market demands, policymakers can design initiatives that promote agricultural growth, food security, and rural development.</p>
+            <p>In summary, the Agriculture Management System is a valuable tool for optimizing agricultural practices, promoting sustainability, and supporting the agricultural sector's growth. By leveraging digital technologies and data analytics, this system empowers farmers and stakeholders in the agricultural industry to make informed decisions, enhance productivity, and contribute to the overall development of the agricultural sector.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="content">
+        <div class="text">
+          <h3 style="color: #ff7f00;">Asset Management System</h3>
+          <p>
+            The Asset Management System provides organizations with the capability to effectively manage their assets, such as lands, buildings, equipment, and more. By integrating various information sources, this system enables seamless tracking and management of asset status, resulting in improved visibility, streamlined maintenance processes, optimized resource utilization, enhanced financial management, and user management.
+          </p>
+          <a href="#" onclick="showMore('asset-more', event)" style="color: orangered;">Read More</a>
+          <div id="asset-more" style="display: none;">
+            <p>
+              The Asset Management System offers a host of benefits, starting with simplified asset tracking, which allows organizations to monitor the location and status of assets in real-time. This enhanced visibility ensures that assets are utilized efficiently, reducing unnecessary expenses and increasing operational efficiency.</p>
+            <p>Moreover, the system enables efficient maintenance planning, allowing organizations to schedule preventive maintenance and repairs proactively. By addressing potential issues before they escalate, asset downtime is minimized, leading to cost savings and increased productivity.</p>
+            <p>Another advantage of the Asset Management System is effective resource allocation. By analyzing asset usage patterns and demand, organizations can allocate resources optimally, ensuring that assets are utilized where they are needed the most. This smart resource allocation contributes to improved operational efficiency and resource optimization.</p>
+            <p>Additionally, the system supports improved decision-making by providing data-driven insights into asset performance and utilization. By analyzing asset data, organizations can make informed decisions regarding asset investments, upgrades, and replacements, ensuring that resources are allocated to assets that provide the most value.</p>
+            <p>By leveraging digital systems and integrating data sources, the Asset Management System ensures comprehensive asset management throughout the asset lifecycle. From acquisition and installation to maintenance and disposal, this system streamlines asset management processes, resulting in better financial control and accountability.</p>
+            <p>In summary, the Asset Management System is an invaluable tool for organizations to effectively manage their assets and resources. By optimizing asset utilization, streamlining maintenance processes, and enhancing decision-making, this system contributes to improved operational efficiency, cost savings, and overall organizational success.</p>
+          </div>
+        </div>      
+        <div class="image">
+          <img src="plan10.png" alt="Image 2">
+        </div>
+      </div>
+             
+      <div class="content">
+        <div class="image">
+          <img src="plan11.jpg" alt="Image 3">
+        </div>
+        <div class="text">
+          <h3 style="color: #ff7f00;">Climate Change and Sustainable Development</h3>
+          <p>Utilizing digital technologies to enhance the efficiency, transparency, accountability, and effectiveness of governance processes. Transforming traditional government operations, services, and interactions with citizens, businesses, and other stakeholders.</p>
+          <a href="#" onclick="showMore('climate-content', event)" style="color: orangered;">Read More</a>
+          <div id="climate-content" style="display: none;">
+            <p>Climate change and sustainable development are critical issues that local governments must address to ensure the well-being of their communities and the planet. As the effects of climate change become more pronounced, it is essential for governments to adopt sustainable practices and implement initiatives that mitigate environmental impacts and promote resilience.</p>
+            <p>One of the key roles of local governments in addressing climate change is through sustainable urban planning. By designing and developing eco-friendly infrastructure, promoting green spaces, and encouraging sustainable transportation options, cities can reduce greenhouse gas emissions and create more livable and environmentally friendly communities.</p>
+            <p>Additionally, local governments can play a crucial role in promoting renewable energy sources. By incentivizing the adoption of solar, wind, and other renewable energy technologies, municipalities can reduce their carbon footprint and contribute to a more sustainable energy future. Moreover, supporting energy-efficient practices in buildings and public facilities further enhances the positive impact on the environment.</p>
+            <p>Sustainable waste management is another area where local governments can make a significant difference. Implementing recycling programs, promoting waste reduction, and adopting responsible waste disposal methods are essential steps in minimizing environmental pollution and conserving resources.</p>
+            <p>In the context of sustainable development, local governments must also focus on social and economic aspects. This includes ensuring equal access to resources and opportunities for all citizens, fostering inclusive economic growth, and providing essential services to vulnerable communities. By addressing social inequalities and promoting economic prosperity, local governments can create a more sustainable and equitable society.</p>
+            <p>Furthermore, local governments can lead by example by adopting sustainable practices within their own operations. This includes implementing energy-saving measures in government facilities, reducing paper usage through digitalization, and prioritizing sustainable procurement practices. Such efforts not only showcase the commitment to sustainability but also inspire citizens and businesses to follow suit.</p>
+            <p>Collaboration is key in tackling climate change and promoting sustainable development. Local governments can partner with other stakeholders, including businesses, non-governmental organizations, and the community, to develop and implement joint initiatives that have a more significant and lasting impact.</p>
+            <p>In conclusion, climate change and sustainable development are crucial areas of focus for local governments. By implementing sustainable practices, promoting renewable energy, managing resources responsibly, and fostering inclusive growth, local authorities can play a leading role in creating a more sustainable future for their communities and the world at large.</p>
+          </div>
+          </div>          
+      </div>
+    <!-- Add more content sections with images and text as needed -->
+  </div>
+  
+  <div id="community" class="container">
+    <h2 style="text-align: center; color: brown; background-color: white;">Case Studies</h2>
+    <div class="case-study-wrapper">
+      <div class="case-study" style="background-color: #f1f1f1;">
+        <img id="lamu-image" alt="Lamu County">
+        <h3 style="color: brown;">Lamu County Government</h3>
+        <p>We have digitized land parcels within Lamu county and we are currently managing the data to help the county government make informed decisions.</p>
+      </div>
+  
+      <div class="case-study" style="background-color: #f1f1f1;">
+        <img id="kakamega-image" alt="Kakamega County">
+        <h3 style="color: brown;">Kakamega County Government</h3>
+        <p>We have digitized land parcels within Kakamega county and we are currently managing the data to help the county government make informed decisions.</p>
+      </div>
+    </div>
+  </div>
+  
+  
+  <div class="footer">
+    <div style="display: flex; align-items: center; justify-content: space-between;">
+      <div>
+        <p style="margin-right: 100px; color: brown;">Email: infomation@digireg.co.ke</p>
+      </div>
+      <div>
+        <a href="https://digireg.co.ke" style="color: brown; margin-right: 20px; margin-top: -5px;" target="_blank">Digireg.co.ke</a>
+        <a href="https://www.linkedin.com/company/digireg-kenya-ltd/" style="margin-right: 50px;" target="_blank"><img src="plan12.png" alt="LinkedIn"></a>
+      </div>
+      <div style="text-align: right;">
+        <p style="margin-right: 150px; color: brown;">Address: 3rd Avenue Parklands, Nairobi, Kenya</p>
+      </div>
+    </div>
+  </div>
+  
+</body>
+</html>
